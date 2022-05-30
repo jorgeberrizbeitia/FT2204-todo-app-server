@@ -6,5 +6,7 @@ router.get("/", (req, res, next) => {
 
 // You put the next routes here 👇
 // example: router.use("/auth", authRoutes)
+const todoRoutes = require("./todo.routes.js")
+router.use("/todos", todoRoutes)
 
 module.exports = router;
