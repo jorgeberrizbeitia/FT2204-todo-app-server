@@ -3,7 +3,7 @@ const { expressjwt } = require("express-jwt")
 const isAuthenticated = expressjwt({
   secret: process.env.TOKEN_SECRET,
   algorithms: ["HS256"],
-  requestProperty: "payload",
+  requestProperty: "payload", // pasa el req.payload a la siguiente funcion de ruta
   getToken: (req) => {
 
     if (req.headers === undefined || req.headers.authorization === undefined) {
