@@ -1,10 +1,17 @@
 const router = require("express").Router();
 const TodoModel = require("../models/Todo.model.js")
+const isAuthenticated = require("../middlewares/isAuthenticated")
 
 // ... todo nuestro CRUD de To-do
 
 // GET "/api/todos/" => para ver todos los To-Dos (solo los titulos)
-router.get("/", async (req, res, next) => {
+router.get("/", isAuthenticated, async (req, res, next) => {
+
+  console.log(req.payload._id) 
+  // con esto tienen acceso al usuario logeado
+  // esto es el req.session.user._id de M2
+  // ! solo tienen acceso si la ruta utiliza el middleware isAuthenticated
+
   try {
     const response = await TodoModel.find().select("title")
     // ... cualquier codigo
